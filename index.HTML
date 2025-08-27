@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>गणेशोत्सव प्रतियोगिता नोंदणी</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), 
+                        url('https://wallpapercave.com/wp/wp4059913.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 152, 51, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+        }
+        
+        header {
+            background: #ff6600;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ganpati-icon {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 32px;
+            color: #fff;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .tab-container {
+            display: flex;
+            background-color: #e65c00;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background-color: #e65c00;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            background-color: #ff9933;
+            border-bottom: 3px solid #fff;
+        }
+        
+        .form-container {
+            padding: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        button {
+            background-color: #ff3300;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            background-color: #e62e00;
+        }
+        
+        .search-container {
+            padding: 25px;
+        }
+        
+        .result-container {
+            padding: 25px;
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .participant-card {
+            border: 2px solid #ff9933;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff6e9 0%, #ffffff 100%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .participant-card h3 {
+            color: #ff6600;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 22px;
+            border-bottom: 2px dashed #ff9933;
+            padding-bottom: 10px;
+        }
+        
+        .participant-detail {
+            margin-bottom: 10px;
+            display: flex;
+        }
+        
+        .participant-detail strong {
+            width: 150px;
+            display: inline-block;
+            color: #ff6600;
+        }
+        
+        .participant-id {
+            font-weight: bold;
+            color: #ff3300;
+            font-size: 20px;
+            margin-top: 15px;
+            text-align: center;
+            padding: 10px;
+            background: #ffe6d9;
+            border-radius: 8px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #fff;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            .container {
+                border-radius: 10px;
+            }
+            
+            .form-container, .search-container {
+                padding: 15px;
+            }
+            
+            input, select, button {
+                padding: 12px;
+            }
+            
+            .participant-detail {
+                flex-direction: column;
+            }
+            
+            .participant-detail strong {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+        
+        .success-message {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2ecc71;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            border: 2px solid #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <i class="fas fa-om ganpati-icon"></i>
+            <h1>गणेशोत्सव प्रतियोगिता नोंदणी</h1>
+            <p>गणपती बाप्पा मोरया! मंगल मूर्ति मोरया!</p>
+        </header>
+        
+        <div class="tab-container">
+            <div class="tab active" id="register-tab">नोंदणी फॉर्म</div>
+            <div class="tab" id="search-tab">सहभागी शोधा</div>
+        </div>
+        
+        <div class="form-container" id="register-form">
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> पूर्ण नाव</label>
+                <input type="text" id="name" placeholder="तुमचे पूर्ण नाव प्रविष्ट करा">
+            </div>
+            
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> जीमेल आयडी</label>
+                <input type="email" id="email" placeholder="तुमची जीमेल आयडी प्रविष्ट करा">
+            </div>
+            
+            <div class="form-group">
+                <label for="year"><i class="fas fa-graduation-cap"></i>गणेश मंडळ</label>
+                <select id="year">
+                    <option value="">निवडा</option>
+                    <option value="FY">नवतरुण गणेश मित्र मंडळ खादगाव</option>
+                    <option value="SY">बालगंधर्व गणेश मित्र मंडळ खादगाव</option>
+                    <option value="TY">आदर्श गणेश मित्र मंडळ खादगाव</option>
+                    <option value="Final">shivshakti गणेश मित्र मंडळ खादगाव</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="competition-type"><i class="fas fa-trophy"></i> प्रतियोगिता प्रकार</label>
+                <select id="competition-type">
+                    <option value="">प्रथम प्रकार निवडा</option>
+                    <option value="खेळ">खेळ</option>
+                    <option value="प्रतियोगिता">प्रतियोगिता</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="competition"><i class="fas fa-list"></i> प्रतियोगिता/खेळ निवडा</label>
+                <select id="competition">
+                    <option value="">कृपया प्रथम प्रकार निवडा</option>
+                </select>
+            </div>
+            
+            <button id="submit-btn"><i class="fas fa-paper-plane"></i> नोंदणी सबमिट करा</button>
+            
+            <div class="success-message" id="success-message">
+                नोंदणी यशस्वी! आपला सहभागी क्रमांक आहे: <span id="participant-id-display"></span>
+            </div>
+        </div>
+        
+        <div class="search-container" id="search-section" style="display: none;">
+            <div class="form-group">
+                <label for="search-id"><i class="fas fa-search"></i> सहभागी क्रमांक टाका</label>
+                <input type="text" id="search-id" placeholder="तुमचा सहभागी क्रमांक प्रविष्ट करा">
+            </div>
+            
+            <button id="search-btn"><i class="fas fa-search"></i> सहभागी शोधा</button>
+            
+            <div class="result-container" id="result">
+                <!-- येथे सहभागी माहिती दिसेल -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 खादगाव गणेशोत्सव समिती. </p>
+        <p>गणपती बाप्पा मोरया! अग्रपूज्य विघ्नहर्ता मोरया!</p>
+    </div>
+
+    <script>
+        // DOM Elements
+        const registerTab = document.getElementById('register-tab');
+        const searchTab = document.getElementById('search-tab');
+        const registerForm = document.getElementById('register-form');
+        const searchSection = document.getElementById('search-section');
+        const competitionType = document.getElementById('competition-type');
+        const competitionSelect = document.getElementById('competition');
+        const submitBtn = document.getElementById('submit-btn');
+        const searchBtn = document.getElementById('search-btn');
+        const resultContainer = document.getElementById('result');
+        const successMessage = document.getElementById('success-message');
+        const participantIdDisplay = document.getElementById('participant-id-display');
+        
+        // Competition options
+        const sportsOptions = [
+            'कबड्डी',
+            'पोते उडी',
+            'लिंबू चमचा',
+            'रंगीत खुर्ची'
+        ];
+        
+        const competitionOptions = [
+            'निबंध लेखन',
+            'पत्र लेखन',
+            'अर्ज लेखन'
+        ];
+        
+        // Tab switching functionality
+        registerTab.addEventListener('click', () => {
+            registerTab.classList.add('active');
+            searchTab.classList.remove('active');
+            registerForm.style.display = 'block';
+            searchSection.style.display = 'none';
+            resultContainer.style.display = 'none';
+            successMessage.style.display = 'none';
+        });
+        
+        searchTab.addEventListener('click', () => {
+            searchTab.classList.add('active');
+            registerTab.classList.remove('active');
+            registerForm.style.display = 'none';
+            searchSection.style.display = 'block';
+            resultContainer.style.display = 'none';
+            successMessage.style.display = 'none';
+        });
+        
+        // Competition type change handler
+        competitionType.addEventListener('change', () => {
+            const type = competitionType.value;
+            
+            // Clear previous options
+            competitionSelect.innerHTML = '<option value="">निवडा</option>';
+            
+            if (type === 'खेळ') {
+                sportsOptions.forEach(sport => {
+                    const option = document.createElement('option');
+                    option.value = sport;
+                    option.textContent = sport;
+                    competitionSelect.appendChild(option);
+                });
+            } else if (type === 'प्रतियोगिता') {
+                competitionOptions.forEach(comp => {
+                    const option = document.createElement('option');
+                    option.value = comp;
+                    option.textContent = comp;
+                    competitionSelect.appendChild(option);
+                });
+            }
+        });
+        
+        // Form submission handler
+        submitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const year = document.getElementById('year').value;
+            const compType = document.getElementById('competition-type').value;
+            const competition = document.getElementById('competition').value;
+            
+            // Basic validation
+            if (!name || !email || !year || !compType || !competition) {
+                alert('कृपया सर्व फील्ड भरा');
+                return;
+            }
+            
+            // Generate participant ID
+            const participantId = 'G' + Math.floor(1000 + Math.random() * 9000);
+            
+            // Save to localStorage
+            const participantData = {
+                name,
+                email,
+                year,
+                compType,
+                competition,
+                participantId
+            };
+            
+            localStorage.setItem(participantId, JSON.stringify(participantData));
+            
+            // Show success message with participant ID
+            participantIdDisplay.textContent = participantId;
+            successMessage.style.display = 'block';
+            
+            // Clear form
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('year').value = '';
+            document.getElementById('competition-type').value = '';
+            document.getElementById('competition').innerHTML = '<option value="">कृपया प्रथम प्रकार निवडा</option>';
+        });
+        
+        // Search functionality
+        searchBtn.addEventListener('click', () => {
+            const searchId = document.getElementById('search-id').value.trim();
+            
+            if (!searchId) {
+                alert('कृपया सहभागी क्रमांक टाका');
+                return;
+            }
+            
+            const participantData = localStorage.getItem(searchId);
+            
+            if (!participantData) {
+                alert('या क्रमांकाशी संबंधित कोणतीही माहिती सापडली नाही');
+                return;
+            }
+            
+            const data = JSON.parse(participantData);
+            
+            // Display participant data
+            resultContainer.innerHTML = `
+                <div class="participant-card">
+                    <h3>सहभागी माहिती</h3>
+                    <div class="participant-detail"><strong>नाव:</strong> ${data.name}</div>
+                    <div class="participant-detail"><strong>जीमेल:</strong> ${data.email}</div>
+                    <div class="participant-detail"><strong>गणेश मंडळ:</strong> ${getYearName(data.year)}</div>
+                    <div class="participant-detail"><strong>प्रतियोगिता प्रकार:</strong> ${data.compType}</div>
+                    <div class="participant-detail"><strong>निवडलेली स्पर्धा:</strong> ${data.competition}</div>
+                    <div class="participant-id">सहभागी क्रमांक: ${data.participantId}</div>
+                </div>
+            `;
+            
+            resultContainer.style.display = 'block';
+        });
+        
+        // Helper function to get year name
+        function getYearName(yearCode) {
+            const years = {
+                'FY': 'पहिले वर्ष',
+                'SY': 'द्वितीय वर्ष',
+                'TY': 'तृतीय वर्ष',
+                'Final': 'अंतिम वर्ष'
+            };
+            
+            return years[yearCode] || yearCode;
+        }
+    </script>
+</body>
+</html>
